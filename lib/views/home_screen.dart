@@ -1,5 +1,6 @@
 import 'package:displays_a_list_of_employees_with_their_names_and_salaries_task/models/employee_model.dart';
 import 'package:displays_a_list_of_employees_with_their_names_and_salaries_task/services/employee_service.dart';
+import 'package:displays_a_list_of_employees_with_their_names_and_salaries_task/views/employee_details.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -35,7 +36,14 @@ class _MyHomePageState extends State<MyHomePage> {
               itemCount: employees.length,
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EmployeeDetails(
+                                  employeeDetail: employees[index],
+                                )));
+                  },
                   child: ListTile(
                     leading: Text(employees[index].id.toString()),
                     title: Text(employees[index].firstName),
