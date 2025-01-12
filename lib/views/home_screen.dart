@@ -26,23 +26,25 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return loading
-        ? Center(
-            child: CircularProgressIndicator(),
-          )
-        : ListView.builder(
-            itemCount: employees.length,
-            itemBuilder: (BuildContext context, int index) {
-              return InkWell(
-                onTap: () {},
-                child: ListTile(
-                  leading: Text(employees[index].id.toString()),
-                  title: Text(employees[index].firstName),
-                  subtitle: Text('Salary: ${employees[index].salary}'),
-                  trailing: Icon(Icons.person),
-                ),
-              );
-            },
-          );
+    return Scaffold(
+      body: loading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.builder(
+              itemCount: employees.length,
+              itemBuilder: (BuildContext context, int index) {
+                return InkWell(
+                  onTap: () {},
+                  child: ListTile(
+                    leading: Text(employees[index].id.toString()),
+                    title: Text(employees[index].firstName),
+                    subtitle: Text('Salary: ${employees[index].salary}'),
+                    trailing: Icon(Icons.person),
+                  ),
+                );
+              },
+            ),
+    );
   }
 }
