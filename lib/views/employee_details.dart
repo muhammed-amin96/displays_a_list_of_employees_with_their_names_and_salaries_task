@@ -1,6 +1,7 @@
 import 'package:displays_a_list_of_employees_with_their_names_and_salaries_task/models/employee_model.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class EmployeeDetails extends StatefulWidget {
   Employee employeeDetail;
   EmployeeDetails({super.key, required this.employeeDetail});
@@ -18,7 +19,7 @@ class _EmployeeDetailsState extends State<EmployeeDetails> {
           child: Column(
             children: [
               Text(widget.employeeDetail
-                  .firstName), // used widget to access the userDetail object
+                  .firstName), // used widget to access the employeeDetail object
               Text(widget.employeeDetail.lastName),
               Text(widget.employeeDetail.email),
               Text(widget.employeeDetail.salary.toString()),

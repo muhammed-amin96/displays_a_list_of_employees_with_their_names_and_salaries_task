@@ -16,7 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
   getMyEmployees() async {
     employees = await EmployeeService().getEmployees();
     loading = false;
-    setState(() {}); //notify UI lma el y get el users
+    setState(() {}); //notify UI lma el y get el employees
   }
 
   @override

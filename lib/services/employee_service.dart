@@ -17,7 +17,7 @@ class EmployeeService {
       prefs.setString(
           'employeesData', cachedData); //store data in shared preferences
       data.forEach((element) {
-        Employee employee = Employee.fromJson(element); //parse each user
+        Employee employee = Employee.fromJson(element); //parse each employee
         employees.add(employee);
       });
     } catch (e) {
