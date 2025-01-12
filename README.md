@@ -1,16 +1,14 @@
 # displays_a_list_of_employees_with_their_names_and_salaries_task
 
-A new Flutter project.
+# Employee List App
 
-## Getting Started
+Fetch employee data using HTTP then Parse JSON responses and map them to model.
+## Features
 
-This project is a starting point for a Flutter application.
+- Fetches employee data from an API using HTTP for API call.
+- Map responses to a model.
+- Error handling for API requests.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Output Screenshot](output.png)
