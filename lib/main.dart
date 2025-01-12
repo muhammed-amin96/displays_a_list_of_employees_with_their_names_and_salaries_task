@@ -1,4 +1,4 @@
-import 'package:displays_a_list_of_employees_with_their_names_and_salaries_task/home_screen.dart';
+import 'package:displays_a_list_of_employees_with_their_names_and_salaries_task/views/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
