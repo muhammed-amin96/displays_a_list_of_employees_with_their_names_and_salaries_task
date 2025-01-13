@@ -15,14 +15,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Employee> employees = [];
-
   bool loading = true;
 
-  getEmployeesDataFromCache() async {
+  Future<List<Employee>> getEmployeesDataFromCache() async {
+    //try to load data from shared prefrence
     List<Employee> cachedEmployees = [];
     final prefs = await SharedPreferences.getInstance();
     String data = prefs.getString('employeesData') ?? '';
     if (data.isEmpty) {
+      //data hasn't been saved in shared prefrences yet
       return cachedEmployees;
     } else {
       var jsonData = jsonDecode(data); //convert string to json
@@ -33,17 +34,19 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  getMyEmployees() async {
+  Future<void> getMyEmployees() async {
     setState(() {
       loading = true;
     });
     List<Employee> cachedEmployees = await getEmployeesDataFromCache();
     if (cachedEmployees.isNotEmpty) {
+      // If data found in shared prefrences
       setState(() {
         employees = cachedEmployees;
         loading = false;
       });
     } else {
+      // make the api call
       List<Employee> apiEmployees = await EmployeeService().getEmployees();
       setState(() {
         employees = apiEmployees;
