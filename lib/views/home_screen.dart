@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:displays_a_list_of_employees_with_their_names_and_salaries_task/models/employee_model.dart';
 import 'package:displays_a_list_of_employees_with_their_names_and_salaries_task/services/employee_service.dart';
 import 'package:displays_a_list_of_employees_with_their_names_and_salaries_task/views/employee_details.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -12,11 +15,41 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Employee> employees = [];
+
   bool loading = true;
+
+  getEmployeesDataFromCache() async {
+    List<Employee> cachedEmployees = [];
+    final prefs = await SharedPreferences.getInstance();
+    String data = prefs.getString('employeesData') ?? '';
+    if (data.isEmpty) {
+      return cachedEmployees;
+    } else {
+      var jsonData = jsonDecode(data); //convert string to json
+      jsonData.forEach((item) {
+        cachedEmployees.add(Employee.fromJson(item));
+      });
+      return cachedEmployees;
+    }
+  }
+
   getMyEmployees() async {
-    employees = await EmployeeService().getEmployees();
-    loading = false;
-    setState(() {}); //notify UI lma el y get el employees
+    setState(() {
+      loading = true;
+    });
+    List<Employee> cachedEmployees = await getEmployeesDataFromCache();
+    if (cachedEmployees.isNotEmpty) {
+      setState(() {
+        employees = cachedEmployees;
+        loading = false;
+      });
+    } else {
+      List<Employee> apiEmployees = await EmployeeService().getEmployees();
+      setState(() {
+        employees = apiEmployees;
+        loading = false;
+      });
+    }
   }
 
   @override
