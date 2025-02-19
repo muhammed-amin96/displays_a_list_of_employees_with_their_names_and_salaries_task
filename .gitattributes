@@ -1,0 +1,13 @@
+# Force all Dart files to be classified as Dart
+*.dart linguist-language=Dart
+
+# Ignore CMake files
+*.cmake linguist-language=ignore
+CMakeLists.txt linguist-language=ignore
+
+android/** linguist-vendored
+ios/** linguist-vendored
+linux/** linguist-vendored
+windows/** linguist-vendored
+macos/** linguist-vendored
+web/** linguist-vendored
